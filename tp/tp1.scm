@@ -166,6 +166,7 @@
 
 (membre 9 '(1 -2 3))
 
+
 ;;epure
 (define epure
   (lambda (L)
@@ -204,7 +205,7 @@
 ;;union
 (define union
   (lambda (L1 L2)
-    (epure (cons L1 L2))))
+    (epurec (cons L1 L2))))
 
 ;;inter
 (define inter
@@ -228,3 +229,11 @@
     )
   )  
 )
+
+;;creer une liste avec les couples de L1 et L2
+(define zip
+  (lambda (L1 L2)
+    (if (or (null? L1) (null? L2))
+    ()
+    (cons (list (car L1) (car L2))
+      (zip (cdr L1) (cdr L2))))))
