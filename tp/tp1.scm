@@ -237,3 +237,11 @@
     ()
     (cons (list (car L1) (car L2))
       (zip (cdr L1) (cdr L2))))))
+
+
+(define map (lambda (f L)
+  (if (null? L)
+    ()
+    (cons (f (car L)) (map f (cdr L)))
+  )
+))
