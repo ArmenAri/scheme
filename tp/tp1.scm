@@ -245,3 +245,43 @@
     (cons (f (car L)) (map f (cdr L)))
   )
 ))
+
+(define L1 '(1 2 3 4))
+(define L2 '(5 6 7 5))
+
+;;produitsc : 
+;; - (somme de i = 0 jusqu'a n) de xi * yi = (PS * y)
+
+(define produitsc (lambda (L1 L2)
+    (if (null? L1)
+        0
+        (+ (* (car L1)
+              (car L2))
+           (produitsc (cdr L1)
+                      (cdr L2))))))
+
+;; Les Tris
+;; - tri insertion : inserer un objet dans une liste triée "à la bonne place"
+;; une collection vide est triée
+;; une collection d'un objet est triée
+
+(define ins (lambda(x L)
+  ;; si L vide -> (x)
+  ;; sinon si L = [e | L'] alors si e < x alors [e | (ins x L')]
+  ;;                             sinon (cons x L)
+  (if (null? L)
+    (list x)
+    (if (< (car L) x)
+      (cons (car L)
+        (ins x (cdr L))
+      )
+      (cons x L)
+    )
+  )
+))
+
+(define triins(lambda (L)
+  ;; si L vide -> ()
+  ;; sinon inserer e (triins L)
+
+))
