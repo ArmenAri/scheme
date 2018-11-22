@@ -282,6 +282,37 @@
 
 (define triins(lambda (L)
   ;; si L vide -> ()
-  ;; sinon inserer e (triins L)
+  ;; sinon inserer e (triins L')
+  (if (null? L)
+    ()
+    (ins (car L) (triins (cdr L)))
+  )
+))
 
+;; - tri par selection
+;; 1 - séléctionner le plus petit
+;; 2 - inserer cet objet en tête de "la collection privée de cet objet" triée
+
+(define min (lambda (x L)
+  (if (null? L)
+    x
+    (if (< x (car L))
+      (min x (cdr L))
+      (min (car L) (cdr l))
+    )
+  )
+))
+
+(define minimum (lambda (L)
+  (if (null? L)
+    "erreur"
+    (min (car L) (cdr L))
+  )
+))
+
+(define retirerelt (lambda (x L)
+  (if (= x (car L))
+    (cdr L)
+    (cons (car L) (retirerelt x (cdr L)))
+  )
 ))
