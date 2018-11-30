@@ -248,6 +248,7 @@
 
 (define L1 '(1 2 3 4))
 (define L2 '(5 6 7 5))
+(define L3 '("armen" "loxol" "alex" "mathieu"))
 
 ;;produitsc : 
 ;; - (somme de i = 0 jusqu'a n) de xi * yi = (PS * y)
@@ -316,3 +317,41 @@
     (cons (car L) (retirerelt x (cdr L)))
   )
 ))
+
+;;+ 3
+(map (lambda(x) (+ 3 x)) L1)
+
+;; integer
+(map (lambda(x) (if (integer? x) #t #f)) L1)
+(map integer? L1)
+
+;; compare string
+(string<? "armen" "loxol")
+
+
+
+(define ins_par_type (lambda(x L type)
+  ;; si L vide -> (x)
+  ;; sinon si L = [e | L'] alors si e < x alors [e | (ins x L')]
+  ;;                             sinon (cons x L)
+  (if (null? L)
+    (list x)
+    (if (type (car L) x)
+      (cons (car L)
+        (ins_par_type x (cdr L) type)
+      )
+      (cons x L)
+    )
+  )
+))
+
+(define triins_par_type(lambda (L type)
+  ;; si L vide -> ()
+  ;; sinon inserer e (triins L')
+  (if (null? L)
+    ()
+    ( ins_par_type (car L) (triins_par_type (cdr L) type) type)
+  )
+))
+
+(triins_par_type L3 string<?)
