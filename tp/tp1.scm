@@ -355,3 +355,31 @@
 ))
 
 (triins_par_type L3 string<?)
+
+(define (comp_personne_taille<? t1 t2)
+  (< (caddr t1) (caddr t2))
+)
+
+(define (comp_personne_taille>? t1 t2)
+  (> (caddr t1) (caddr t2))
+)
+
+(define (comp_personne_age<? a1 a2)
+  (< (cadr a1) (cadr a2))
+)
+
+(define (comp_personne_age>? a1 a2)
+  (> (cadr a1) (cadr a2))
+)
+
+(define (comp_personne_nom<? n1 n2)
+  (string<? (car n1) (car n2))
+)
+
+(define (comp_personne_nom>? n1 n2)
+  (string>? (car n1) (car n2))
+)
+
+(define L4 '( ("armen" 36 160) ("alex" 43 100) ("loxol" 12 150) ))
+
+(triins_par_type L4 comp_personne_age<?)
