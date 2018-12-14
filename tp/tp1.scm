@@ -239,7 +239,7 @@
       (zip (cdr L1) (cdr L2))))))
 
 
-(define map (lambda (f L)
+(define mapkar (lambda (f L)
   (if (null? L)
     ()
     (cons (f (car L)) (map f (cdr L)))
@@ -394,4 +394,10 @@
   (lambda (x) 
     (f (g x))  
   )
+)
+
+(define (remove_not_int x)
+    (if (integer? x)
+     x
+    )
 )
