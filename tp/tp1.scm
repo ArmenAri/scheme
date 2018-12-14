@@ -412,9 +412,19 @@
   )
 )
 
+
+
 (define (pc E n)
+  ;; E non vide
   (if (= n 0)
-    (())
-    
+    '()
+    (append-map (lambda (z) (cons z (pc E (- n 1)))) E)
   )
+)
+
+(define (prod_cart E n)
+    (if (null? E)
+      ()
+      (pc E n)
+    )
 )
