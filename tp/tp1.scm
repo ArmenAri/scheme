@@ -406,11 +406,15 @@
 )
 
 (define (remove_not_int x)
-    (if (integer? x)
-    (list x)
-    ()
-    )
+  (if (integer? x)
+  (list x)    
+  ()
+  )
 )
 
-
-;;Mathieu azy hein
+(define (pc E n)
+  (if (= n 0)
+    (())
+    
+  )
+)
