@@ -396,8 +396,18 @@
   )
 )
 
+(define mapkan
+  (lambda (f L)
+    (if (null? L)
+      ()
+      (append (f (car L)) (f (cdr L)))
+    )
+  )  
+)
+
 (define (remove_not_int x)
     (if (integer? x)
-     x
+    (list x)
+    ()
     )
 )
