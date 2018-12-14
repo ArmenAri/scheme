@@ -383,3 +383,15 @@
 (define L4 '( ("armen" 36 160) ("alex" 43 100) ("loxol" 12 150) ))
 
 (triins_par_type L4 comp_personne_age<?)
+
+(define h 0.0001)
+
+(define (diff f)
+  (lambda (x) ( / (- (f (+ x h)) (f (- x h))) (* 2 h)))
+)
+
+(define (fog f g)
+  (lambda (x) 
+    (f (g x))  
+  )
+)
