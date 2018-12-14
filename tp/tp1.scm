@@ -400,7 +400,7 @@
   (lambda (f L)
     (if (null? L)
       ()
-      (append (f (car L)) (f (cdr L)))
+      (append (f (car L)) (mapkan f (cdr L)))
     )
   )  
 )
