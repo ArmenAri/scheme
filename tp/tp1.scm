@@ -413,18 +413,12 @@
 )
 
 
-(define (cons_each z E)
-  (if (null? E)
-    ()
-    (cons (cons z (car E)) (cons_each z (cdr E)))
-  )
-)
 
 (define (pc E n)
   ;; E non vide
   (if (= n 0)
     '(())
-    (append-map (lambda (z) (cons_each z (pc E (- n 1)))) E)
+    (map (lambda (z) (cons z (pc E (- n 1)))) E)
   )
 )
 
@@ -434,3 +428,14 @@
       (pc E n)
     )
 )
+
+(define SR(lambda (L I R)
+    (if (null? L)
+      I
+      (R (car L) (SR (cdr L) I R))
+    )
+))
+
+(SR '(1 4 5 6) 0 (lambda(tete RR) (+ 1 RR)))
+
+(SR '(1 4 5 6) () (lambda(tete RR) (cons ( odd? tete ) RR) ))
