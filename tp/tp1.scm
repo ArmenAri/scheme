@@ -445,3 +445,13 @@
 
 (SR '(1 4 5 6) () (lambda(tete RR) (cons ( odd? tete ) RR) ))
 
+(define (P E)
+    (if (null? E)
+      '(())
+      (let ((res (P (cdr E))))
+      (append (map (lambda (Z)
+        (cons (car E) Z))
+        res)
+        res))
+    )
+)
