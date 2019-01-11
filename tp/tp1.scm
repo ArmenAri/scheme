@@ -412,6 +412,7 @@
   )
 )
 
+;; Ex : 4
 (define (cons_each z E)
 	  (if (null? E)
 	    ()
@@ -445,6 +446,7 @@
 
 (SR '(1 4 5 6) () (lambda(tete RR) (cons ( odd? tete ) RR) ))
 
+;; Ex : 8
 (define (P E)
     (if (null? E)
       '(())
@@ -455,3 +457,24 @@
         res))
     )
 )
+
+;; Ex : 6
+
+(define MAT '((1 2 3) (4 5 -3) (7 10 15)))
+
+(define (tra M)
+    (if (null? M)
+      0
+      ( + ( caar M ) ( tra (map cdr (cdr M)) ))
+    )
+)
+
+(define (trans M)
+    (if (null? (car M))
+      '()
+      (cons (map car M) (trans (map cdr M)))
+    )
+)
+
+(define (trans2 M)
+    (apply map list M))
