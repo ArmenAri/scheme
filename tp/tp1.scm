@@ -479,10 +479,7 @@
     )
 )
 
-
-
 ;; Ex : 6
-
 (define MAT '((1 2 3) (4 5 -3) (7 10 15)))
 
 (define (tra M)
@@ -502,7 +499,6 @@
 (define (trans2 M)
     (apply map list M))
 
-
 (define (PS V1 V2)
     (apply * ((cons V1 V2)))
 )
@@ -510,3 +506,40 @@
     (map (lambda (x) (PS x V)) M)
 )
 
+;;quel-que-soit
+;; L = Liste
+;; P = Predicat
+(define qqs? (lambda (L P)
+    (if (null? L) 
+      #t
+      (and (P (car L))
+        (qqs? (cdr L) P)
+      )
+    )
+))
+
+(define tous_egaux_qqs (lambda (L)
+      (qqs? L (lambda(x) (= x (car L))))
+))
+
+;;il existe
+(define existe? (lambda (L P)
+  (if (null? L) 
+    #f
+    (or (P (car L))
+      (existe? (cdr L) P)
+    )
+  )
+))
+
+(define tous_egaux_existe (lambda (L)
+      (existe? L (lambda(x) (= x (car L))))
+))
+
+(tous_egaux_qqs '(2 2 2 2))
+(tous_egaux_existe '(2 1 2 2))
+
+(define tous_diff (lambda (L)
+    (not (existe? (cdr L) (lambda(x) (= x (car L)))))))
+
+(tous_diff '(1 2 3 4 5))
