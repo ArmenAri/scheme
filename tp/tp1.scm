@@ -435,6 +435,12 @@
     )
 )
 
+
+;; RR Résultat sur le reste
+;; I valeur à renvoyer quand la condition d'arret est vraie
+;; R fonction à appliquer sur la liste L
+;; L liste sur laquelle on fait les opérations
+
 (define SR(lambda (L I R)
     (if (null? L)
       I
@@ -444,7 +450,22 @@
 
 (SR '(1 4 5 6) 0 (lambda(tete RR) (+ 1 RR)))
 
-(SR '(1 4 5 6) () (lambda(tete RR) (cons ( odd? tete ) RR) ))
+(SR '(1 2 3 4 5 6 7 8 9 10) 0 (lambda(tete RR) (+ tete RR)))
+
+(SR '(1 4 5 6) () (lambda(tete RR) (cons ( odd? tete ) RR)))
+
+
+
+(define maxL(lambda (L)
+  (SR (cdr L) (car L) (lambda(tete RR) (if (> tete RR) tete RR)))
+))
+
+(define minL(lambda (L)
+  (SR (cdr L) (car L) (lambda(tete RR) (if (< tete RR) tete RR)))
+))
+
+(maxL '(-1 -3 -5))
+(minL '(1 4 3 2 0 10 22 2 1))
 
 ;; Ex : 8
 (define (P E)
@@ -457,6 +478,8 @@
         res))
     )
 )
+
+
 
 ;; Ex : 6
 
@@ -478,3 +501,12 @@
 
 (define (trans2 M)
     (apply map list M))
+
+
+(define (PS V1 V2)
+    (apply * ((cons V1 V2)))
+)
+(define (mv M V)
+    (map (lambda (x) (PS x V)) M)
+)
+
